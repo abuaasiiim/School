@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Green Valley - Virtual Walking Tour</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.css"
+  />
+
+  <style>
+    html, body, #panorama {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #202020;
+    }
+
+    /* Street View Navigation */
+    .street-arrow {
+      width: 58px !important;
+      height: 58px !important;
+      border: 2px solid rgba(255,255,255,0.95) !important;
+      border-radius: 50% !important;
+      background: rgba(255,255,255,0.94) !important;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.45);
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s ease, filter 0.2s ease;
+    }
+
+    .street-arrow::after {
+      content: "➜";
+      font-size: 30px;
+      font-weight: 800;
+      color: #292929;
+      line-height: 1;
+    }
+
+    .street-arrow.back-arrow::after {
+      transform: rotate(180deg);
+    }
+
+    .street-arrow:hover {
+      background: #B94A4A !important;
+      filter: brightness(1.12);
+    }
+
+    .street-arrow:hover::after {
+      color: white;
+    }
+
+    .pnlm-tooltip span {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .pnlm-load-box {
+      background: #202020;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="panorama"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.js"></script>
+
+  <script>
+    const scenes = {
+      entrance: {
+        title: "Main Entrance",
+        type: "equirectangular",
+        panorama: "https://demo.sirv.com/panoramas/civic.jpg",
+        hotSpots: [
+          {
+            pitch: -10,
+            yaw: 0,
+            type: "scene",
+            text: "Walk Forward - Reception",
+            sceneId: "reception",
+            cssClass: "street-arrow forward-arrow"
+          }
+        ]
+      },
+
+      reception: {
+        title: "Reception",
+        type: "equirectangular",
+        panorama: "https://pannellum.org/images/alma.jpg",
+        hotSpots: [
+          {
+            pitch: -10,
+            yaw: 0,
+            type: "scene",
+            text: "Walk Forward - Ground Floor",
+            sceneId: "ground",
+            cssClass: "street-arrow forward-arrow"
+          },
+          {
+            pitch: -10,
+            yaw: 180,
+            type: "scene",
+            text: "Walk Back - Main Entrance",
+            sceneId: "entrance",
+            cssClass: "street-arrow back-arrow"
+          }
+        ]
+      },
+
+      ground: {
+        title: "Ground Floor Corridor",
+        type: "equirectangular",
+        panorama: "https://pannellum.org/images/from-tree.jpg",
+        hotSpots: [
+          {
+            pitch: -10,
+            yaw: 0,
+            type: "scene",
+            text: "Walk Forward - First Floor",
+            sceneId: "first",
+            cssClass: "street-arrow forward-arrow"
+          },
+          {
+            pitch: -10,
+            yaw: 180,
+            type: "scene",
+            text: "Walk Back - Reception",
+            sceneId: "reception",
+            cssClass: "street-arrow back-arrow"
+          }
+        ]
+      },
+
+      first: {
+        title: "First Floor Corridor",
+        type: "equirectangular",
+        panorama: "https://pannellum.org/images/bma-0.jpg",
+        hotSpots: [
+          {
+            pitch: -10,
+            yaw: 0,
+            type: "scene",
+            text: "Walk Forward - Second Floor",
+            sceneId: "second",
+            cssClass: "street-arrow forward-arrow"
+          },
+          {
+            pitch: -10,
+            yaw: 180,
+            type: "scene",
+            text: "Walk Back - Ground Floor",
+            sceneId: "ground",
+            cssClass: "street-arrow back-arrow"
+          }
+        ]
+      },
+
+      second: {
+        title: "Second Floor Corridor",
+        type: "equirectangular",
+        panorama: "https://pannellum.org/images/lascar.jpg",
+        hotSpots: [
+          {
+            pitch: -10,
+            yaw: 0,
+            type: "scene",
+            text: "Walk Forward - Playground",
+            sceneId: "playground",
+            cssClass: "street-arrow forward-arrow"
+          },
+          {
+            pitch: -10,
+            yaw: 180,
+            type: "scene",
+            text: "Walk Back - First Floor",
+            sceneId: "first",
+            cssClass: "street-arrow back-arrow"
+          }
+        ]
+      },
+
+      playground: {
+        title: "Playground",
+        type: "equirectangular",
+        panorama: "https://pannellum.org/images/tocopilla.jpg",
+        hotSpots: [
+          {
+            pitch: -10,
+            yaw: 180,
+            type: "scene",
+            text: "Walk Back - Second Floor",
+            sceneId: "second",
+            cssClass: "street-arrow back-arrow"
+          }
+        ]
+      }
+    };
+
+    const requestedScene =
+      new URLSearchParams(window.location.search).get("scene");
+
+    const firstScene = scenes[requestedScene]
+      ? requestedScene
+      : "entrance";
+
+    pannellum.viewer("panorama", {
+      default: {
+        firstScene,
+        autoLoad: true,
+        sceneFadeDuration: 1000,
+        showControls: true,
+        showFullscreenCtrl: false,
+        showZoomCtrl: true,
+        mouseZoom: true,
+        draggable: true,
+        hfov: 100,
+        minHfov: 50,
+        maxHfov: 120
+      },
+      scenes
+    });
+  </script>
+</body>
+</html>
