@@ -1,13 +1,13 @@
 
 import {
   GraduationCap,
-  ArrowUpRight,
-  MapPin,
-  Phone,
-  Mail,
   ChevronRight,
   ArrowUp,
   BookOpen,
+  MapPin,
+  Phone,
+  Mail,
+  ArrowUpRight,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -38,102 +38,108 @@ export default function Footer({ theme = "dark" }) {
     text: isLight ? "text-[#292929]" : "text-white",
     muted: isLight ? "text-[#292929]/60" : "text-white/60",
     faint: isLight ? "text-[#292929]/45" : "text-white/45",
-    accent: "text-[#B94A4A]",
     accentLight: isLight ? "text-[#B94A4A]" : "text-[#E58A8A]",
     border: isLight ? "border-[#292929]/10" : "border-white/10",
-    panel: isLight ? "bg-white/60" : "bg-white/[0.06]",
-    iconBg: isLight ? "bg-[#B94A4A]/10" : "bg-[#B94A4A]/15",
-    hoverText: "hover:text-[#B94A4A]",
   };
 
   return (
-    <footer className={`relative overflow-hidden ${colors.background} ${colors.text}`}>
+    <footer
+      className={`relative overflow-hidden ${colors.background} ${colors.text}`}
+    >
       {/* Decorative background */}
-      <div className="pointer-events-none absolute -right-40 top-0 h-80 w-80 rounded-full bg-[#B94A4A]/10 blur-3xl" />
-      <div className={`pointer-events-none absolute -left-40 bottom-0 h-80 w-80 rounded-full ${isLight ? "bg-[#292929]/5" : "bg-white/5"} blur-3xl`} />
+      <div className="pointer-events-none absolute -right-32 top-0 h-64 w-64 rounded-full bg-[#B94A4A]/10 blur-3xl" />
 
-      {/* Top CTA */}
-      <div className="relative mx-auto max-w-7xl px-5 pt-7 sm:px-8 lg:px-10">
-        <div className={`relative overflow-hidden rounded-2xl border ${colors.border} ${colors.panel} p-5 backdrop-blur-xl sm:p-7`}>
-          <div className="pointer-events-none absolute -right-12 -top-16 h-40 w-40 rounded-full bg-[#B94A4A]/10 blur-3xl" />
-
-          <div className="relative flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+      {/* Admission CTA - desktop only */}
+      <div className="relative mx-auto hidden max-w-7xl px-8 pt-7 md:block lg:px-10">
+        <div
+          className={`rounded-2xl border ${colors.border} bg-white/[0.05] p-6 lg:p-7`}
+        >
+          <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className={`mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] ${colors.accentLight}`}>
+              <p
+                className={`mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] ${colors.accentLight}`}
+              >
                 Learn • Grow • Achieve
               </p>
 
-              <h2 className="max-w-2xl text-xl font-bold tracking-tight sm:text-3xl">
+              <h2 className="text-xl font-bold tracking-tight lg:text-3xl">
                 Your future begins with a strong foundation.
               </h2>
 
-              <p className={`mt-2 max-w-xl text-xs leading-6 sm:text-sm ${colors.muted}`}>
-                Explore academics, school facilities, announcements
-                and admission information on our school website.
+              <p className={`mt-2 text-xs leading-6 ${colors.muted}`}>
+                Explore academics, school facilities, announcements and
+                admission information.
               </p>
             </div>
 
             <Link
               href="/admission"
-              className="group inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-[#B94A4A] px-5 py-3 text-xs font-bold text-white transition duration-300 hover:-translate-y-1 hover:bg-[#A33D3D] hover:shadow-xl"
+              className="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-[#B94A4A] px-5 py-3 text-xs font-bold text-white transition hover:bg-[#A33D3D]"
             >
               Explore Admissions
-              <ArrowUpRight
-                size={16}
-                className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-              />
+              <ArrowUpRight size={15} />
             </Link>
           </div>
         </div>
       </div>
 
       {/* Main footer */}
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-7 px-5 py-8 sm:px-8 md:grid-cols-2 lg:grid-cols-4 lg:px-10">
-
+      <div className="relative mx-auto grid max-w-7xl grid-cols-2 gap-x-5 gap-y-5 px-4 py-5 sm:px-8 sm:py-7 md:grid-cols-2 md:gap-7 md:py-8 lg:grid-cols-4 lg:px-10">
         {/* School identity */}
-        <div>
-          <Link href="/" className="group flex items-center gap-3">
-            <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#B94A4A]/30 ${colors.iconBg} ${colors.accentLight} transition duration-300 group-hover:rotate-6 group-hover:bg-[#B94A4A]/20`}>
-              <GraduationCap size={26} strokeWidth={1.6} />
+        <div className="col-span-2 lg:col-span-1">
+          <Link href="/" className="group flex items-center gap-2.5">
+            <div
+              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#B94A4A]/30 bg-[#B94A4A]/10 ${colors.accentLight} sm:h-12 sm:w-12`}
+            >
+              <GraduationCap size={24} strokeWidth={1.6} />
             </div>
 
             <div>
-              <p className="text-sm font-bold leading-5">
-                Sardar Patel
-              </p>
+              <p className="text-sm font-bold leading-5">Sardar Patel</p>
               <p className={`text-xs leading-5 ${colors.muted}`}>
                 Rashtriya Inter College
               </p>
             </div>
           </Link>
 
-          <p className={`mt-4 max-w-xs text-xs leading-6 ${colors.muted}`}>
-            Explore our academic programmes, student activities,
-            school announcements and educational resources.
-          </p>
-
-          <div className={`mt-4 inline-flex items-center gap-2 rounded-full border border-[#B94A4A]/30 ${colors.iconBg} px-3 py-1.5 text-[11px] font-medium ${colors.accentLight}`}>
-            <BookOpen size={14} />
+          {/* Medium badge */}
+          <div
+            className={`mt-2 inline-flex items-center gap-2 rounded-full border border-[#B94A4A]/30 bg-[#B94A4A]/10 px-3 py-1.5 text-[10px] font-medium ${colors.accentLight}`}
+          >
+            <BookOpen size={13} />
             Hindi & English Medium
           </div>
+
+          {/* Desktop description */}
+          <p
+            className={`mt-4 hidden max-w-xs text-xs leading-6 ${colors.muted} lg:block`}
+          >
+            Explore our academic programmes, student activities, school
+            announcements and educational resources.
+          </p>
         </div>
 
         {/* Quick links */}
-        <div>
-          <h3 className={`text-sm font-bold tracking-wide ${colors.accentLight}`}>
+        <div className="col-span-2 lg:col-span-1">
+          <h3
+            className={`text-xs font-bold tracking-wide sm:text-sm ${colors.accentLight}`}
+          >
             Quick Links
           </h3>
 
-          <div className="mb-4 mt-3 h-px w-10 bg-[#B94A4A]/70" />
+          <div className="mb-3 mt-2 h-px w-9 bg-[#B94A4A]/70" />
 
-          <ul className="space-y-2.5">
+          <ul className="grid grid-cols-2 gap-x-3 gap-y-2 md:grid-cols-1 md:gap-y-2.5">
             {quickLinks.map((link) => (
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className={`group inline-flex items-center gap-2 text-xs ${colors.muted} transition hover:translate-x-1 ${colors.hoverText}`}
+                  className={`inline-flex items-center gap-1.5 text-[11px] leading-5 transition hover:text-[#B94A4A] sm:text-xs ${colors.muted}`}
                 >
-                  <ChevronRight size={14} className="text-[#B94A4A]" />
+                  <ChevronRight
+                    size={13}
+                    className="shrink-0 text-[#B94A4A]"
+                  />
                   {link.label}
                 </Link>
               </li>
@@ -141,8 +147,8 @@ export default function Footer({ theme = "dark" }) {
           </ul>
         </div>
 
-        {/* Explore */}
-        <div>
+        {/* Explore - desktop/tablet only */}
+        <div className="hidden md:block">
           <h3 className={`text-sm font-bold tracking-wide ${colors.accentLight}`}>
             Explore
           </h3>
@@ -154,7 +160,7 @@ export default function Footer({ theme = "dark" }) {
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className={`group inline-flex items-center gap-2 text-xs ${colors.muted} transition hover:translate-x-1 ${colors.hoverText}`}
+                  className={`inline-flex items-center gap-2 text-xs transition hover:text-[#B94A4A] ${colors.muted}`}
                 >
                   <ChevronRight size={14} className="text-[#B94A4A]" />
                   {link.label}
@@ -164,32 +170,43 @@ export default function Footer({ theme = "dark" }) {
           </ul>
         </div>
 
-        {/* Contact */}
-        <div>
-          <h3 className={`text-sm font-bold tracking-wide ${colors.accentLight}`}>
+        {/* Contact Information - visible on mobile */}
+        <div className="col-span-2 md:col-span-1">
+          <h3
+            className={`text-xs font-bold tracking-wide sm:text-sm ${colors.accentLight}`}
+          >
             Contact Information
           </h3>
 
-          <div className="mb-4 mt-3 h-px w-10 bg-[#B94A4A]/70" />
+          <div className="mb-2 mt-2 h-px w-9 bg-[#B94A4A]/70 sm:mb-3" />
 
-          <p className={`mb-4 text-xs leading-6 ${colors.muted}`}>
-            Official contact information will be updated
-            after verification by the school.
+          <p className={`text-[10px] leading-4 sm:text-xs sm:leading-6 ${colors.muted}`}>
+            Official contact information will be updated after verification
+            by the school.
           </p>
 
-          <div className="space-y-3">
-            <div className={`flex items-start gap-3 text-xs ${colors.muted}`}>
-              <MapPin size={17} className={`mt-0.5 shrink-0 ${colors.accentLight}`} />
+          <div className={`mt-3 space-y-2 sm:space-y-3 ${colors.muted}`}>
+            <div className="flex items-start gap-2 text-[11px] leading-4 sm:text-xs">
+              <MapPin
+                size={14}
+                className={`mt-0.5 shrink-0 ${colors.accentLight}`}
+              />
               <span>School address to be added</span>
             </div>
 
-            <div className={`flex items-start gap-3 text-xs ${colors.muted}`}>
-              <Phone size={17} className={`mt-0.5 shrink-0 ${colors.accentLight}`} />
+            <div className="flex items-start gap-2 text-[11px] leading-4 sm:text-xs">
+              <Phone
+                size={14}
+                className={`mt-0.5 shrink-0 ${colors.accentLight}`}
+              />
               <span>Phone number to be added</span>
             </div>
 
-            <div className={`flex items-start gap-3 text-xs ${colors.muted}`}>
-              <Mail size={17} className={`mt-0.5 shrink-0 ${colors.accentLight}`} />
+            <div className="flex items-start gap-2 text-[11px] leading-4 sm:text-xs">
+              <Mail
+                size={14}
+                className={`mt-0.5 shrink-0 ${colors.accentLight}`}
+              />
               <span>Email address to be added</span>
             </div>
           </div>
@@ -198,22 +215,20 @@ export default function Footer({ theme = "dark" }) {
 
       {/* Bottom bar */}
       <div className={`relative border-t ${colors.border}`}>
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-4 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
-          <p className={`text-[11px] leading-5 ${colors.faint}`}>
-            © 2026 Sardar Patel Rashtriya Inter College.
-            All rights reserved.
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-3 sm:px-8 sm:py-4 lg:px-10">
+          <p
+            className={`max-w-[75%] text-[9px] leading-4 sm:max-w-none sm:text-[11px] sm:leading-5 ${colors.faint}`}
+          >
+            © 2026 Sardar Patel Rashtriya Inter College. All rights reserved.
           </p>
 
           <Link
             href="/"
             aria-label="Back to home"
-            className={`group inline-flex w-fit items-center gap-2 rounded-full border border-[#B94A4A]/40 px-4 py-2 text-[11px] font-semibold ${colors.accentLight} transition duration-300 hover:-translate-y-1 hover:bg-[#B94A4A] hover:text-white`}
+            className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border border-[#B94A4A]/40 px-2.5 py-1.5 text-[9px] font-semibold ${colors.accentLight} transition hover:bg-[#B94A4A] hover:text-white sm:px-4 sm:py-2 sm:text-[11px]`}
           >
             Back to home
-            <ArrowUp
-              size={14}
-              className="transition-transform group-hover:-translate-y-1"
-            />
+            <ArrowUp size={12} />
           </Link>
         </div>
       </div>
